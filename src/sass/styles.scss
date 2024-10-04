@@ -1,0 +1,21 @@
+// src/styles.scss
+
+@use '_library/_variables' as var;
+@use '_library/_reset';
+
+@use '_components/_header';
+@use '_components/_card';
+@use '_components/_category';
+
+.content{
+  max-width: 800px;
+  margin: 120px auto 40px;
+  padding: 0 1rem;
+}
+
+a{
+  transition: 0.3s ease-in-out;
+  &:hover{
+    opacity: 0.7;
+  }
+}
