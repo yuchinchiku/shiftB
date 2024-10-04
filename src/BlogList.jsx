@@ -1,25 +1,28 @@
 import React from "react";
+import posts from './data/posts.js';
 
-const BlogList = ({ src }) => (
-  <ul className="card">
-    {src.map((elem) => {
+import styles from './cssModule/blogList.module.css'
+
+const BlogList = () => (
+  <ul className={styles.card}>
+    {posts.map((elem) => {
       const date = new Date(elem.createdAt);
       const dateText = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 
       return (
-        <li className="card__item" key={elem.id}>
-          <a className="card__link" href={`/posts/${elem.id}/`}>
-            <div className="card__head">
-              <p className="card__date">{dateText}</p>
-              <ul className="category">
-                {elem.categories.map(category => 
-                  <li  className="category__item" key={category}>{category}</li>
+        <li className={styles.card__item} key={elem.id}>
+          <a className={styles.card__link} href={`/posts/${elem.id}/`}>
+            <div className={styles.card__head}>
+              <p className={styles.card__date}>{dateText}</p>
+              <ul className={styles.category}>
+                {elem.categories.map(category =>
+                  <li  className={styles.category__item} key={category}>{category}</li>
                 )}
               </ul>
             </div>
-            <div className="card__body">
-                <p className="card__title">{elem.title}</p>
-                <p className="card__desc" dangerouslySetInnerHTML={{ __html: elem.content }} />
+            <div className={styles.card__body}>
+                <p className={styles.card__title}>{elem.title}</p>
+                <p className={styles.card__desc} dangerouslySetInnerHTML={{ __html: elem.content }} />
             </div>
           </a>
         </li>
