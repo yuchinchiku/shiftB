@@ -1,0 +1,21 @@
+@use '../_library/_variables' as var;
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: var.$color-primary;
+  padding: 24px;
+}
+
+.navList{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__link{
+    color: white;
+    font-weight: 700;
+  }
+}

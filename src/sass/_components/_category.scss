@@ -1,0 +1,14 @@
+@use '../_library/_variables' as var;
+
+.category{
+  display: flex;
+  align-items: center;
+  &__item{
+    color: var.$color-secondary;
+    font-size: .8rem;
+    border: 1px solid var.$color-secondary;
+    border-radius: .2rem;
+    margin-right: .5rem;
+    padding: .2rem .4rem;
+  }
+}
