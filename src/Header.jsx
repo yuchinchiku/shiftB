@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import nav from "./data/nav";
 
 import styles from './cssModule/header.module.css'
@@ -10,7 +11,7 @@ const Header = () => (
         { nav.map((elem) => {
           return (
             <li className={styles.navList__item} key={elem.id}>
-              <a className={styles.navList__link} href={`${elem.href}`}>{elem.name}</a>
+              <Link className={styles.navList__link} to={`${elem.href}`}>{elem.name}</Link>
             </li>
           );
         })}
