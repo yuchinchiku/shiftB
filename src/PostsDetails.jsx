@@ -24,14 +24,13 @@ const PostsDetails = () => {
 
   if(loading) {
     return <p>Loading...</p>;
+  } else if (!post) {
+    return <div>記事が見つかりませんでした。</div>;
   }
 
   const date = new Date(post.createdAt);
   const dateText = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 
-  if (!post) {
-    return <div>記事が見つかりませんでした。</div>;
-  }
   return(
     <article className={styles.post}>
       <div className={styles.post__img}>
