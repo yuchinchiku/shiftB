@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header.jsx'
 import BlogList from './BlogList.jsx'
 import PostsDetails from './PostsDetails.jsx';
+import Contact from './Contact.jsx';
 import './cssModule/reset.css';
 import styles from './cssModule/styles.module.css'
 
@@ -21,6 +22,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<BlogList />} />
             <Route path="/posts/:postId" element={<PostsDetails />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
       </div>
