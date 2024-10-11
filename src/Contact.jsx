@@ -1,40 +1,15 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from './cssModule/contact.module.css'
 
 const Contact = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleForm = e => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const defaultValues = {
-    name: '',
-    email: '',
-    message: ''
-  }
-
-  const { register, handleSubmit, formState: {errors}, reset } = useForm({
-    defaultValues
-  });
+  const { register, handleSubmit, formState: { isSubmitting, errors}, reset } = useForm();
 
   const handleReset = () => {
     reset();
   }
 
-  const [isSubmit, setIsSubmit] = useState(false);
-
   const onError = err => console.log(err);
   const onSubmit = async(data) => {
-    setIsSubmit(true);
     try{
       const reponse = await fetch('https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts',{
         method: 'POST',
@@ -50,8 +25,6 @@ const Contact = () => {
     } catch (error) {
       console.log('送信エラー', error);
       alert('送信エラー');
-    } finally {
-      setIsSubmit(false);
     }
   }
 
@@ -70,8 +43,7 @@ const Contact = () => {
                   message: '名前は30文字以内にしてください。'
                 }
               })}
-              onChange={handleForm}
-              disabled={isSubmit}
+              disabled={isSubmitting}
             />
             <p className={styles.error}>{errors.name?.message}</p>
           </div>
@@ -88,8 +60,7 @@ const Contact = () => {
                   message: 'メールアドレスの形式が不正です。'
                 }
               })}
-              onChange={handleForm}
-              disabled={isSubmit}
+              disabled={isSubmitting}
             />
             <p className={styles.error}>{errors.email?.message}</p>
           </div>
@@ -105,15 +76,14 @@ const Contact = () => {
                   message: '本文は500文字以内にしてください。'
                 }
               })}
-              onChange={handleForm}
-              disabled={isSubmit}
+              disabled={isSubmitting}
             ></textarea>
             <p className={styles.error}>{errors.message?.message}</p>
           </div>
         </div>
         <div className={styles.form__btn}>
-          <button className={styles.submit} type="submit disabled={isSubmit}">送信</button>
-          <button className={styles.clear} type="button" onClick={handleReset} disabled={isSubmit}>クリア</button>
+          <button className={styles.submit} type="submit disabled={isSubmitting}">送信</button>
+          <button className={styles.clear} type="button" onClick={handleReset} disabled={isSubmitting}>クリア</button>
         </div>
       </form>
     </div>
